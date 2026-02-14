@@ -7,24 +7,30 @@ interface PostCardProps {
 }
 
 export default function PostCard({ post }: PostCardProps) {
+  const formattedDate = new Date(post.date).toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return (
     <article className="group">
       <Link href={`/posts/${post.slug}`} className="block">
-        <div className="rounded-lg border border-gray-200 p-5 transition-colors hover:border-gray-300 dark:border-gray-800 dark:hover:border-gray-700">
-          <time className="text-sm text-gray-500 dark:text-gray-400">
-            {new Date(post.date).toLocaleDateString("ko-KR", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </time>
-          <h2 className="mt-1 text-lg font-semibold text-gray-900 group-hover:text-blue-500 dark:text-gray-100">
+        <div className="rounded-xl border border-border bg-card-bg p-6 transition-all duration-200 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5">
+          <div className="mb-3 flex items-center gap-3 text-sm">
+            <time className="text-muted" dateTime={post.date}>
+              {formattedDate}
+            </time>
+            <span className="text-border">&middot;</span>
+            <span className="text-muted">{post.readingTime}</span>
+          </div>
+          <h2 className="mb-2 text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent">
             {post.title}
           </h2>
-          <p className="mt-1.5 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          <p className="mb-4 line-clamp-2 text-[15px] leading-relaxed text-muted">
             {post.description}
           </p>
-          <div className="mt-3 flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
               <TagBadge key={tag} tag={tag} />
             ))}

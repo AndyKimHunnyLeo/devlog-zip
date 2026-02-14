@@ -5,11 +5,7 @@ import Callout from "./Callout";
 export function getMDXComponents(): MDXComponents {
   return {
     pre: ({ children, ...props }) => {
-      return (
-        <CodeBlock {...props}>
-          {children}
-        </CodeBlock>
-      );
+      return <CodeBlock {...props}>{children}</CodeBlock>;
     },
     Callout,
   };

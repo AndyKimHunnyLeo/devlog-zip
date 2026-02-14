@@ -31,7 +31,7 @@ export default function TableOfContents() {
           }
         });
       },
-      { rootMargin: "-80px 0px -80% 0px" }
+      { rootMargin: "-100px 0px -80% 0px" }
     );
 
     elements.forEach((el) => observer.observe(el));
@@ -42,21 +42,28 @@ export default function TableOfContents() {
 
   return (
     <nav className="hidden xl:block">
-      <div className="sticky top-24">
-        <h4 className="mb-3 text-sm font-semibold text-gray-900 dark:text-gray-100">
-          Table of Contents
+      <div className="sticky top-28">
+        <h4 className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted">
+          On This Page
         </h4>
-        <ul className="space-y-2 text-sm">
+        <ul className="space-y-2.5 text-sm">
           {headings.map((h) => (
             <li key={h.id} className={h.level === 3 ? "pl-4" : ""}>
               <a
                 href={`#${h.id}`}
-                className={`block transition-colors ${
+                className={`group relative block py-1 transition-colors ${
                   activeId === h.id
-                    ? "font-medium text-blue-500"
-                    : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+                    ? "font-medium text-accent"
+                    : "text-muted hover:text-foreground"
                 }`}
               >
+                <span
+                  className={`absolute -left-3 top-0 h-full w-0.5 rounded-full transition-all ${
+                    activeId === h.id
+                      ? "bg-accent"
+                      : "bg-transparent group-hover:bg-muted"
+                  }`}
+                />
                 {h.text}
               </a>
             </li>

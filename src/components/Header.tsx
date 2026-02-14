@@ -1,23 +1,40 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
+  const pathname = usePathname();
+
   return (
-    <header className="border-b border-gray-200 dark:border-gray-800">
-      <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-xl font-bold tracking-tight">
-          DevLog<span className="text-blue-500">.zip</span>
+    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md transition-colors">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
+        <Link
+          href="/"
+          className="group flex items-center gap-1 text-xl font-bold tracking-tight transition-colors"
+        >
+          <span className="text-foreground">DevLog</span>
+          <span className="text-accent transition-transform group-hover:scale-110">.zip</span>
         </Link>
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-8">
           <Link
             href="/"
-            className="text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+            className={`text-sm font-medium transition-all duration-200 ${
+              pathname === "/"
+                ? "text-foreground"
+                : "text-muted hover:text-foreground"
+            }`}
           >
             Posts
           </Link>
           <Link
             href="/about"
-            className="text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+            className={`text-sm font-medium transition-all duration-200 ${
+              pathname === "/about"
+                ? "text-foreground"
+                : "text-muted hover:text-foreground"
+            }`}
           >
             About
           </Link>

@@ -6,11 +6,11 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-12">
-      <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+    <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+      <h1 className="mb-12 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
         About
       </h1>
-      <div className="prose mt-8 text-gray-600 dark:text-gray-300">
+      <div className="prose">
         <p>
           안녕하세요! <strong>DevLog.zip</strong>을 운영하고 있는 개발자입니다.
         </p>
@@ -32,17 +32,12 @@ export default function AboutPage() {
         <ul>
           <li>
             GitHub:{" "}
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer">
               github.com
             </a>
           </li>
           <li>
-            Email:{" "}
-            <a href="mailto:hello@example.com">hello@example.com</a>
+            Email: <a href="mailto:hello@example.com">hello@example.com</a>
           </li>
         </ul>
       </div>

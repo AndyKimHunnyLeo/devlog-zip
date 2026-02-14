@@ -4,7 +4,7 @@ interface TagBadgeProps {
 
 export default function TagBadge({ tag }: TagBadgeProps) {
   return (
-    <span className="inline-block rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-300">
+    <span className="inline-flex items-center rounded-md bg-accent/10 px-2.5 py-1 text-xs font-medium text-accent ring-1 ring-inset ring-accent/20 transition-colors hover:bg-accent/20">
       {tag}
     </span>
   );

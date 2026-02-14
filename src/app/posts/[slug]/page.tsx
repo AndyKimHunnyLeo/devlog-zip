@@ -19,9 +19,7 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
@@ -42,7 +40,7 @@ export default async function PostPage({ params }: PageProps) {
   const { prev, next } = getAdjacentPosts(slug);
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-12 xl:grid xl:max-w-5xl xl:grid-cols-[1fr_200px] xl:gap-10">
+    <div className="mx-auto max-w-5xl px-6 py-12 xl:grid xl:grid-cols-[1fr_200px] xl:gap-12 xl:py-16">
       <div className="min-w-0">
         <PostHeader meta={post.meta} />
         <article className="prose">
@@ -75,36 +73,36 @@ export default async function PostPage({ params }: PageProps) {
           />
         </article>
 
-        <nav className="mt-12 flex items-center justify-between border-t border-gray-200 pt-6 dark:border-gray-800">
+        <nav className="mt-16 flex items-center justify-between gap-4 border-t border-border pt-8">
           {prev ? (
             <Link
               href={`/posts/${prev.slug}`}
-              className="group flex flex-col"
+              className="group flex flex-1 flex-col rounded-xl border border-border bg-card-bg p-4 transition-all duration-200 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5"
             >
-              <span className="text-xs text-gray-500 dark:text-gray-400">
+              <span className="mb-1 text-xs font-medium uppercase tracking-wider text-muted">
                 Previous
               </span>
-              <span className="mt-1 text-sm font-medium text-gray-700 group-hover:text-blue-500 dark:text-gray-300">
+              <span className="text-sm font-semibold text-foreground transition-colors group-hover:text-accent">
                 {prev.title}
               </span>
             </Link>
           ) : (
-            <div />
+            <div className="flex-1" />
           )}
           {next ? (
             <Link
               href={`/posts/${next.slug}`}
-              className="group flex flex-col text-right"
+              className="group flex flex-1 flex-col rounded-xl border border-border bg-card-bg p-4 text-right transition-all duration-200 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/5"
             >
-              <span className="text-xs text-gray-500 dark:text-gray-400">
+              <span className="mb-1 text-xs font-medium uppercase tracking-wider text-muted">
                 Next
               </span>
-              <span className="mt-1 text-sm font-medium text-gray-700 group-hover:text-blue-500 dark:text-gray-300">
+              <span className="text-sm font-semibold text-foreground transition-colors group-hover:text-accent">
                 {next.title}
               </span>
             </Link>
           ) : (
-            <div />
+            <div className="flex-1" />
           )}
         </nav>
       </div>

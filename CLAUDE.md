@@ -61,3 +61,4 @@ public/images/                  # Post images
 |-------|-------------|
 | `manage-skills` | Analyzes session changes to detect verification skill gaps and create/update skills |
 | `verify-implementation` | Runs all registered verification skills sequentially for integrated validation |
+| `write-post` | MDX 블로그 포스트를 일관된 말투와 포맷으로 작성한다. 포스트 주제를 받으면 사용. |
