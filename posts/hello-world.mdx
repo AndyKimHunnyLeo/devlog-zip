@@ -1,0 +1,56 @@
+---
+title: "Hello World - DevLog.zip을 시작하며"
+date: "2026-02-14"
+description: "DevLog.zip 기술 블로그의 첫 번째 포스트입니다. 블로그를 만든 이유와 앞으로의 계획을 공유합니다."
+tags: ["blog", "introduction"]
+published: true
+---
+
+## 블로그를 시작합니다
+
+안녕하세요! **DevLog.zip**에 오신 것을 환영합니다.
+
+이 블로그는 개발하면서 배운 것들을 **압축**해서 전달하는 것을 목표로 합니다. 핵심만 빠르게 전달하되, 중요한 맥락은 놓치지 않도록 하겠습니다.
+
+## 기술 스택
+
+이 블로그는 다음 기술로 만들어졌습니다:
+
+- **Next.js** — App Router 기반 풀스택 프레임워크
+- **TypeScript** — 타입 안전성 확보
+- **Tailwind CSS** — 유틸리티 퍼스트 스타일링
+- **MDX** — Markdown + React 컴포넌트
+
+### 코드 예시
+
+블로그 포스트에서는 이렇게 코드를 보여줄 수 있습니다:
+
+```typescript
+interface Post {
+  title: string;
+  date: string;
+  tags: string[];
+  published: boolean;
+}
+
+function getLatestPosts(posts: Post[]): Post[] {
+  return posts
+    .filter((post) => post.published)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+```
+
+인라인 코드도 지원됩니다: `const greeting = "Hello, World!"` 처럼요.
+
+## 앞으로의 계획
+
+앞으로 다음과 같은 주제를 다룰 예정입니다:
+
+1. **TypeScript** 심화 패턴
+2. **Next.js** App Router 활용법
+3. **시스템 디자인** 기초
+4. 개발 도구 및 생산성 팁
+
+> 좋은 코드는 스스로를 설명하고, 좋은 블로그는 그 과정을 기록합니다.
+
+감사합니다!

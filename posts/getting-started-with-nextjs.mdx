@@ -1,0 +1,116 @@
+---
+title: "Next.js App Router 시작하기"
+date: "2026-02-13"
+description: "Next.js App Router의 핵심 개념과 기본 사용법을 정리합니다. 파일 기반 라우팅부터 서버 컴포넌트까지."
+tags: ["nextjs", "react", "typescript"]
+published: true
+---
+
+## App Router란?
+
+Next.js 13부터 도입된 **App Router**는 `app/` 디렉토리를 기반으로 라우팅을 처리합니다. 기존의 `pages/` 디렉토리와 달리, React Server Components를 기본으로 사용합니다.
+
+## 파일 기반 라우팅
+
+App Router에서는 폴더 구조가 곧 URL 경로입니다:
+
+```text
+app/
+├── page.tsx          → /
+├── about/
+│   └── page.tsx      → /about
+└── posts/
+    └── [slug]/
+        └── page.tsx  → /posts/:slug
+```
+
+### 특수 파일들
+
+App Router에는 특별한 역할을 하는 파일들이 있습니다:
+
+- `layout.tsx` — 하위 라우트 전체에 적용되는 레이아웃
+- `page.tsx` — 해당 경로의 실제 페이지
+- `loading.tsx` — 로딩 UI (Suspense 경계)
+- `error.tsx` — 에러 UI (Error Boundary)
+- `not-found.tsx` — 404 페이지
+
+## Server Components vs Client Components
+
+App Router에서 모든 컴포넌트는 기본적으로 **Server Component**입니다.
+
+```tsx
+// Server Component (기본값)
+export default function PostList() {
+  // 서버에서만 실행됨 — DB 직접 접근 가능
+  const posts = getAllPosts();
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.slug}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+클라이언트 상호작용이 필요하면 `"use client"` 지시자를 사용합니다:
+
+```tsx
+"use client";
+
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Count: {count}
+    </button>
+  );
+}
+```
+
+### 언제 무엇을 써야 할까?
+
+| 기능 | Server Component | Client Component |
+|------|:---:|:---:|
+| 데이터 패칭 | O | △ |
+| 환경 변수 접근 | O | X |
+| useState/useEffect | X | O |
+| 이벤트 리스너 | X | O |
+| 브라우저 API | X | O |
+
+## 데이터 패칭
+
+App Router에서는 `async` 컴포넌트로 직접 데이터를 가져올 수 있습니다:
+
+```tsx
+interface Post {
+  id: number;
+  title: string;
+}
+
+export default async function Page() {
+  const res = await fetch("https://api.example.com/posts");
+  const posts: Post[] = await res.json();
+
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+## 정리
+
+App Router의 핵심을 요약하면:
+
+1. `app/` 디렉토리 기반의 파일 시스템 라우팅
+2. React Server Components 기본 사용
+3. `"use client"` 지시자로 클라이언트 컴포넌트 전환
+4. `async` 컴포넌트에서 직접 데이터 패칭
+
+다음 포스트에서는 **동적 라우팅**과 **generateStaticParams**에 대해 더 자세히 다뤄보겠습니다.
