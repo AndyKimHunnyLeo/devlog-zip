@@ -22,13 +22,10 @@ Runs all registered verify skills sequentially to validate codebase integrity:
 
 ## Target Skills
 
-(No verification skills registered yet)
-
-<!-- When skills are added, register them in this format:
 | # | Skill | Description |
 |---|-------|-------------|
-| 1 | `verify-example` | Example verification |
--->
+| 1 | `verify-seo` | Verifies SEO optimization patterns across metadata, Open Graph, sitemap, robots, frontmatter, and structured data |
+| 2 | `verify-facts` | Verifies technical facts in MDX posts — code blocks, URLs, package names, version numbers, internal links, term consistency, and API accuracy via Context7 docs |
 
 ## Workflow
 

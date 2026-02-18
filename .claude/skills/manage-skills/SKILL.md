@@ -28,13 +28,10 @@ Analyzes changes made during the current session to detect and fix verification 
 
 List of verification skills registered in the current project. Update this list when creating/deleting skills.
 
-(No verification skills registered yet)
-
-<!-- When skills are added, register them in this format:
 | Skill | Description | Covered File Patterns |
 |-------|-------------|----------------------|
-| `verify-example` | Example verification | `src/example/**/*.ts` |
--->
+| `verify-seo` | Verifies SEO optimization patterns across metadata, Open Graph, sitemap, robots, frontmatter, and structured data | `src/app/**/page.tsx`, `src/app/layout.tsx`, `src/app/sitemap.ts`, `src/app/robots.ts`, `posts/*.mdx`, `src/lib/types.ts` |
+| `verify-facts` | Verifies technical facts in MDX posts — code blocks, URLs, package names, version numbers, internal links, term consistency, and API accuracy via Context7 docs | `posts/*.mdx`, `src/lib/posts.ts`, `src/lib/types.ts`, `package.json` |
 
 ## Workflow
 

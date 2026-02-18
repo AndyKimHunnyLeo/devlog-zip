@@ -26,8 +26,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: post.meta.title,
     description: post.meta.description,
+    openGraph: {
+      title: post.meta.title,
+      description: post.meta.description,
+      type: "article",
+      publishedTime: post.meta.date,
+      tags: post.meta.tags,
+    },
   };
 }
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://devlog.zip";
 
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
@@ -39,8 +48,23 @@ export default async function PostPage({ params }: PageProps) {
 
   const { prev, next } = getAdjacentPosts(slug);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.meta.title,
+    description: post.meta.description,
+    datePublished: post.meta.date,
+    url: `${SITE_URL}/posts/${slug}`,
+    author: { "@type": "Person", name: "Andy Kim" },
+    keywords: post.meta.tags.join(", "),
+  };
+
   return (
     <div className="mx-auto max-w-5xl px-6 py-12 xl:grid xl:grid-cols-[1fr_200px] xl:gap-12 xl:py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="min-w-0">
         <PostHeader meta={post.meta} />
         <article className="prose">

@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { getAllPosts } from "@/lib/posts";
 import PostCard from "@/components/PostCard";
+
+export const metadata: Metadata = {
+  title: "DevLog.zip — 개발 경험을 압축해서 전달합니다",
+  description: "해외 스타트업 tech lead의 개발 필드 노트. 시스템 디자인, 디버깅, 코드 리뷰, 해외 개발 문화 이야기.",
+};
 
 export default function HomePage() {
   const posts = getAllPosts();

@@ -62,3 +62,5 @@ public/images/                  # Post images
 | `manage-skills` | Analyzes session changes to detect verification skill gaps and create/update skills |
 | `verify-implementation` | Runs all registered verification skills sequentially for integrated validation |
 | `write-post` | MDX 블로그 포스트를 일관된 말투와 포맷으로 작성한다. 포스트 주제를 받으면 사용. |
+| `verify-seo` | SEO 최적화 패턴 검증 — 메타데이터, Open Graph, sitemap, robots, frontmatter, 구조화 데이터 |
+| `verify-facts` | 기술 팩트 검증 — 코드 블록, URL, 패키지명, 버전 번호, 내부 링크, 용어 일관성, Context7 공식 문서 대조 |

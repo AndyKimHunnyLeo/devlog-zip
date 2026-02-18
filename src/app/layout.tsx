@@ -14,12 +14,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://devlog.zip";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "DevLog.zip",
     template: "%s | DevLog.zip",
   },
   description: "Development logs, compressed and delivered.",
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    siteName: "DevLog.zip",
+  },
 };
 
 export default function RootLayout({
